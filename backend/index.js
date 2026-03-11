@@ -321,7 +321,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+ 
 // Models
 const User = require("./models/user.model");
 const Note = require("./models/note.model");
