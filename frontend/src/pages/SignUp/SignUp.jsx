@@ -29,7 +29,7 @@ const SignUp = () => {
     }
 
     setError('');
-
+ 
     try {
       const response = await axiosInstance.post("/create-account", {
         fullName: name,
@@ -45,7 +45,7 @@ const SignUp = () => {
 
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken)
-        navigate("/.dashboard")
+        navigate("/dashboard")
       }
 
     } catch (error) {
