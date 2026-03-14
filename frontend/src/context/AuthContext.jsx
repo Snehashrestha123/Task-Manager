@@ -25,12 +25,13 @@
 
 
 
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
+// Create Auth Context
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // Use the same key as axiosInstance
+  // Token state (matches axiosInstance and API calls)
   const [token, setToken] = useState(localStorage.getItem("token") || null);
 
   // Login: store token in state + localStorage
@@ -39,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     setToken(newToken);
   };
 
-  // Logout: remove token
+  // Logout: remove token from state + localStorage
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);

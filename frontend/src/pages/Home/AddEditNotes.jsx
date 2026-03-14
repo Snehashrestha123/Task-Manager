@@ -125,19 +125,26 @@
 
 // export default AddEditNotes;
 
+
+
+
+
+
+
 import React, { useState } from "react";
 import TagInput from "../../components/Input/TagInput";
 import { MdClose } from "react-icons/md";
 import axios from "axios";
 
+// Use VITE_API_URL from Vite env
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
-  // States
   const [title, setTitle] = useState(noteData?.title || "");
   const [content, setContent] = useState(noteData?.content || "");
   const [tags, setTags] = useState(Array.isArray(noteData?.tags) ? noteData.tags : []);
   const [error, setError] = useState(null);
 
-  const BASE_URL = "http://localhost:8000"; // backend URL
   const token = localStorage.getItem("token"); // JWT token from login
 
   // Add Note
@@ -146,11 +153,7 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
       const response = await axios.post(
         `${BASE_URL}/add-note`,
         { title, content, tags },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // MUST send token
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.data?.note) {
@@ -172,11 +175,7 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
       const response = await axios.put(
         `${BASE_URL}/edit-note/${noteId}`,
         { title, content, tags },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // MUST send token
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.data?.note) {
@@ -189,7 +188,6 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
     }
   };
 
-  // Handle button click
   const handleAddNote = () => {
     if (!title) return setError("Please enter the title");
     if (!content) return setError("Please enter the content");

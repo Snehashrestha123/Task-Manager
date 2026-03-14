@@ -82,7 +82,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login/Login";
-import Signup from "./pages/Signup/Signup";
+import SignUp from "./pages/SignUp/SignUp";
 import Home from "./pages/Home/Home";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
@@ -92,7 +92,7 @@ const App = () => {
       <Routes>
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<SignUp />} />
 
         {/* Protected Routes */}
         <Route
